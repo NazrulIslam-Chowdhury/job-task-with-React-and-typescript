@@ -1,0 +1,8 @@
+.user {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin: 0 40px 0 40px;
+    /* background-color: rgb(185, 176, 176); */
+    padding: 50px;
+}
