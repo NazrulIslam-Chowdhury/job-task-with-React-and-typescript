@@ -1,10 +1,3 @@
-// export interface IComments {
-//     postId: number;
-//     id: number;
-//     name: string;
-//     email: string;
-//     body: string;
-// }
 export interface IUsers {
     id: number;
     name: string;
