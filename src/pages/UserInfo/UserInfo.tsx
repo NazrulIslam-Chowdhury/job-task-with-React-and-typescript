@@ -44,7 +44,7 @@ const UserInfo = () => {
     const submit = (e: FormEvent) => {
         e.preventDefault();
         const userInfo = user.user;
-        if ((userInfo.Name || userInfo.Email || userInfo.Phone) === "") {
+        if (userInfo.Name === "" || userInfo.Email === "" || userInfo.Phone === "") {
             return alert('Please give information first');
         }
         localStorage.setItem("User", JSON.stringify(userInfo))
@@ -79,6 +79,7 @@ const UserInfo = () => {
                                 placeholder='name'
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
+                                required
                             />
                             <TextField
                                 id="email"
@@ -92,6 +93,7 @@ const UserInfo = () => {
                                 placeholder='Email'
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
+                                required
                             />
                             <TextField
                                 id="phone"
@@ -105,6 +107,7 @@ const UserInfo = () => {
                                 placeholder='Phone Number'
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
+                                required
                             />
                             <Button
                                 type='submit'
