@@ -57,7 +57,7 @@ const UserInfo = () => {
                 color: 'black',
                 textAlign: 'center'
             }}>
-                User Information
+                Give Information
             </h1>
             <div style={{
                 display: "flex",
