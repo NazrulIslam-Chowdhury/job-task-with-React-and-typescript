@@ -1,7 +1,35 @@
-export interface IComments {
-    postId: number;
+// export interface IComments {
+//     postId: number;
+//     id: number;
+//     name: string;
+//     email: string;
+//     body: string;
+// }
+export interface IUsers {
     id: number;
     name: string;
+    username: string;
     email: string;
-    body: string;
+    address: Address;
+    phone: string;
+    website: string;
+    company: Company;
 }
+export interface Address {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: Geo;
+}
+export interface Geo {
+    lat: string;
+    lng: string;
+}
+export interface Company {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+}
+
+

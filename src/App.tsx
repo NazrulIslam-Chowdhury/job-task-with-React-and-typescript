@@ -1,7 +1,11 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom';
+import {
+  Routes,
+  Route
+} from 'react-router-dom';
 import UserInfo from './pages/UserInfo/UserInfo';
 import Data from './pages/Data/Data';
+
 
 function App() {
 

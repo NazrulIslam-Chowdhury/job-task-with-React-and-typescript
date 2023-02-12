@@ -1,29 +1,34 @@
 import { DataGrid } from '@mui/x-data-grid';
-import React, { useEffect, useState } from 'react';
+import React,
+{
+    useEffect,
+    useState
+} from 'react';
 import { DataComments } from '../../Data Fetch/DataFetch';
-import { IComments } from '../../Models/IComments';
+import { columns } from '../../Data Grid/DataGrid';
+import { IUsers } from '../../Models/IComments';
 
 interface IState {
     loading: boolean,
-    comments: IComments[],
+    users: IUsers[],
     errorMsg: string
 }
 
 const Data = () => {
     const [state, setState] = useState<IState>({
         loading: false,
-        comments: [] as IComments[],
+        users: [] as IUsers[],
         errorMsg: ''
     })
 
-    // request
+    //URL request
     useEffect(() => {
         setState({ ...state, loading: true })
         DataComments.getComments()
             .then(res => setState({
                 ...state,
+                users: res.data,
                 loading: false,
-                comments: res.data.slice(0, 100)
             }))
             .catch(err => setState({
                 ...state,
@@ -31,31 +36,28 @@ const Data = () => {
                 errorMsg: err.message
             }));
     }, [])
-    const { loading, comments, errorMsg } = state;
-    console.log(comments)
+    const { loading, users, errorMsg } = state;
+    console.log(users)
 
-    // data grid
-    const columns = [
-        { field: 'PostID', headerName: 'PostID', width: 70 },
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'name', headerName: 'Name', width: 220 },
-        { field: 'email', headerName: 'Email', width: 200 },
-        { field: 'body', headerName: 'Comments', width: 300 },
-    ];
-
-    const rows = comments.map((comment) => ({
-        postID: comment.postId,
-        id: comment.id,
-        name: comment.name,
-        email: comment.email,
-        comments: comment.body
+    // data grid row
+    const rows = users.map((user, i) => ({
+        id: i + 1,
+        ID: user.id,
+        name: user.name,
+        phone: user.phone,
+        email: user.email,
+        city: user.address.city,
+        street: user.address.street,
+        suit: user.address.suite,
+        website: user.website,
+        company: user.company.name,
     }))
     return (
         <div>
             <h1 style={{
                 color: 'black',
                 textAlign: 'center'
-            }}>Data Grid</h1>
+            }}>Users Data</h1>
             {loading && (<p>Loading...</p>)}
             {errorMsg && (<p>{errorMsg}</p>)}
             <div style={{ height: 500, width: '100%' }}>
