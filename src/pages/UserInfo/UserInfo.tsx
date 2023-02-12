@@ -1,6 +1,17 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { TextField, Card, CardContent, Button } from '@mui/material'
+import React,
+{
+    FormEvent,
+    useState
+} from 'react';
+import {
+    TextField,
+    Card,
+    CardContent,
+    Button
+} from '@mui/material'
 import './User.css';
+import { useNavigate } from 'react-router-dom';
+
 
 interface IState {
     user: {
@@ -11,13 +22,14 @@ interface IState {
 }
 
 const UserInfo = () => {
-    const [user, setUser] = useState({
+    const [user, setUser] = useState<IState>({
         user: {
             Name: "",
             Email: "",
             Phone: ""
         }
     });
+    const navigate = useNavigate();
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +46,7 @@ const UserInfo = () => {
         e.preventDefault();
         const userInfo = user.user;
         localStorage.setItem("user", JSON.stringify(userInfo))
+        navigate('/data');
     }
 
     return (
@@ -83,9 +96,12 @@ const UserInfo = () => {
                             type='submit'
                             variant='contained'
                             color='primary'
-                            sx={{ marginTop: '10px', boxShadow: '2px 2px 2px 2px black' }}
+                            sx={{
+                                marginTop: '10px',
+                                boxShadow: '2px 2px 2px 2px black'
+                            }}
                         >
-                            Save & Next
+                            Save
                         </Button>
                     </form>
                 </CardContent>
